@@ -143,7 +143,7 @@ body {
 
   .card-info.columns-5 {
     padding: 1rem 0rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -162,5 +162,21 @@ body {
 @media (max-width: 41em) {
   .cards-container {
     gap: 1.5rem;
+  }
+}
+
+@media (max-width: 30em) {
+  .card.columns-5 {
+    height: 15rem;
+    width: 6rem;
+  }
+
+  .card.columns-3 {
+    height: 22rem;
+    width: 10rem;
+  }
+
+  .card-info.columns-3 {
+    font-size: 1.2rem;
   }
 }
