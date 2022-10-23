@@ -53,6 +53,7 @@ const loadData = async function (key) {
       await fetch(`https://hp-api.herokuapp.com/api/characters/${key}`)
     ).json();
 
+    data = [];
     fetchData.forEach((per) => {
       const person = {
         name: per.name,
