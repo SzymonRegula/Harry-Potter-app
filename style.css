@@ -205,3 +205,57 @@ body {
     height: 2.4rem;
   }
 }
+
+@media (max-width: 31em) {
+  .header .btn {
+    font-size: 1rem;
+  }
+
+  .header {
+    padding: 2rem 1rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 27em) {
+  .header .btn {
+    font-size: 0.8rem;
+  }
+
+  .header {
+    padding: 2rem 0.6rem;
+    gap: 1rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .modal {
+    width: 30rem;
+  }
+
+  .modal-img {
+    height: 25rem;
+    width: 15rem;
+  }
+
+  .modal-info {
+    font-size: 1.2rem;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+
+  .info {
+    font-size: 1rem;
+  }
+
+  .btn-favorites {
+    font-size: 0.8rem;
+    height: 2rem;
+  }
+}
