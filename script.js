@@ -1,6 +1,6 @@
 let data = [];
 let sorted = false;
-let modalId = '';
+let modalId;
 let favorites = [];
 
 const btnAll = document.querySelector('.btn-all');
@@ -44,7 +44,6 @@ const loadRaven = function () {
 const loadStorage = function () {
   const storage = localStorage.getItem('favorites');
   if (storage) favorites = JSON.parse(storage);
-  console.log(favorites);
 };
 
 const loadData = async function (key) {
@@ -54,8 +53,7 @@ const loadData = async function (key) {
       await fetch(`https://hp-api.herokuapp.com/api/characters/${key}`)
     ).json();
 
-    data = [];
-    fetchData.forEach((per, i) => {
+    fetchData.forEach((per) => {
       const person = {
         name: per.name,
         birthDate: per.dateOfBirth,
@@ -64,11 +62,9 @@ const loadData = async function (key) {
         ancestry: per.ancestry,
         studentOrStaff: per.hogwartsStaff ? 'staff' : 'student',
         image: per.image,
-        id: i,
       };
       data.push(person);
     });
-    console.log(data);
     generateTable();
   } catch (err) {
     console.log(err);
@@ -76,16 +72,16 @@ const loadData = async function (key) {
 };
 
 const generateTable = function () {
-  table.classList.remove('hidden');
   tBody.innerHTML = '';
   data.forEach((person, row) => {
     tBody.insertAdjacentHTML('beforeend', generateRow(person, row));
   });
+  table.classList.remove('hidden');
 };
 
 const generateRow = function (person, row) {
   return `
-  <tr class='person-row' data-id='${row}'>
+  <tr class='person-row' data-row='${row}'>
     <td>${person.name}</td>
     <td>${person.birthDate}</td>
     <td>${person.house}</td>
@@ -108,8 +104,6 @@ const sortName = function () {
     }
     return 0; // names must be equal
   });
-  console.log(data);
-
   sorted = !sorted;
   generateTable();
 };
@@ -135,10 +129,8 @@ const sortDate = function () {
       if (dateA < dateB) return 1;
       if (dateA > dateB) return -1;
     }
-    return 0; // names must be equal
+    return 0; // dates must be equal
   });
-  console.log(data);
-
   sorted = !sorted;
   generateTable();
 };
@@ -153,35 +145,36 @@ const sortHouse = function () {
       if (a.house < b.house) return 1;
       if (a.house > b.house) return -1;
     }
-    return 0; // names must be equal
+    return 0; // houses must be equal
   });
   sorted = !sorted;
   generateTable();
 };
 
-const checkData = function (data) {
-  if (!data) return 'unknown';
-  return data;
-};
-
 const openModal = function (e) {
   if (e.target.tagName.toLowerCase() !== 'th') {
-    const id = e.target.closest('tr').dataset.id;
-    modalId = id;
+    const row = e.target.closest('tr').dataset.row;
+    modalId = row;
 
-    modalImg.setAttribute('src', `${data[id].image}`);
-    modalName.textContent = checkData(data[id].name);
-    modalDate.textContent = checkData(data[id].birthDate);
-    modalHouse.textContent = checkData(data[id].house);
-    modalWizard.textContent = checkData(data[id].wizard);
-    modalAncestry.textContent = checkData(data[id].ancestry);
-    modalIsStudent.textContent = checkData(data[id].studentOrStaff);
-    btnFav.textContent = favorites.some((fav) => fav.name === data[id].name)
+    data[row].image
+      ? modalImg.setAttribute('src', `${data[row].image}`)
+      : modalImg.setAttribute('src', `placeholder.svg`);
+    modalName.textContent = checkData(data[row].name);
+    modalDate.textContent = checkData(data[row].birthDate);
+    modalHouse.textContent = checkData(data[row].house);
+    modalWizard.textContent = checkData(data[row].wizard);
+    modalAncestry.textContent = checkData(data[row].ancestry);
+    modalIsStudent.textContent = checkData(data[row].studentOrStaff);
+    btnFav.textContent = favorites.some((fav) => fav.name === data[row].name)
       ? 'Remove from favorites'
       : 'Add to favorites';
     backdrop.classList.remove('hidden');
     modal.classList.remove('hidden');
   }
+};
+
+const checkData = function (data) {
+  return data ? data : 'unknown';
 };
 
 const closeModal = function () {

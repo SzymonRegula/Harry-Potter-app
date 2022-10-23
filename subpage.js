@@ -1,11 +1,11 @@
 let favorites = [];
 let btnsRemove;
+let cards;
+let cardsInfo;
 let columnNums = 3;
 
 const cardsContainer = document.querySelector('.cards-container');
 const switchDispBtn = document.querySelector('.switch-disp');
-let cards;
-let cardsInfo;
 
 const dispCards = function () {
   cardsContainer.innerHTML = '';
@@ -15,6 +15,7 @@ const dispCards = function () {
   btnsRemove = document.querySelectorAll('.btn-remove');
   btnsRemove.forEach((btn) => btn.addEventListener('click', removeCard));
 
+  //needed for different styling for different columns number
   cards = document.querySelectorAll('.card');
   cardsInfo = document.querySelectorAll('.card-info');
 };
@@ -22,7 +23,9 @@ const dispCards = function () {
 const generateCard = function (person) {
   return `
   <div class='card columns-${columnNums}' >
-    <img class='card-img' src='${person.image}' alt='Harry Potter character' />
+    <img class='card-img' src='${
+      person.image ? person.image : `placeholder.svg`
+    }' alt='Harry Potter character' />
     <div class='card-info columns-${columnNums}'>
       <div>
         <span class='card-name'>${person.name}</span>
@@ -39,7 +42,6 @@ const removeCard = function (e) {
   const index = favorites.findIndex(
     (fav) => fav.name === e.target.closest('.btn-remove').dataset.name
   );
-
   favorites.splice(index, 1);
   localStorage.setItem('favorites', JSON.stringify(favorites));
   dispCards();
@@ -52,34 +54,25 @@ const loadStorage = function () {
 
 const switchDisp = function () {
   if (columnNums === 3) {
-    cardsContainer.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
-
-    cards.forEach((card) => card.classList.replace('columns-3', 'columns-5'));
-    cardsInfo.forEach((info) =>
-      info.classList.replace('columns-3', 'columns-5')
-    );
-
-    columnNums = 5;
-
+    changeColumns(3, 5);
     return;
   }
   if (columnNums === 5) {
-    cardsContainer.style.gridTemplateColumns = '1fr';
-
-    cards.forEach((card) => card.classList.replace('columns-5', 'columns-1'));
-    cardsInfo.forEach((info) =>
-      info.classList.replace('columns-5', 'columns-1')
-    );
-
-    columnNums = 1;
+    changeColumns(5, 1);
     return;
   }
-  cardsContainer.style.gridTemplateColumns = '1fr 1fr 1fr';
+  changeColumns(1, 3);
+};
 
-  cards.forEach((card) => card.classList.replace('columns-1', 'columns-3'));
-  cardsInfo.forEach((info) => info.classList.replace('columns-1', 'columns-3'));
-
-  columnNums = 3;
+const changeColumns = function (was, willBe) {
+  cardsContainer.style.gridTemplateColumns = '1fr '.repeat(willBe);
+  cards.forEach((card) =>
+    card.classList.replace(`columns-${was}`, `columns-${willBe}`)
+  );
+  cardsInfo.forEach((info) =>
+    info.classList.replace(`columns-${was}`, `columns-${willBe}`)
+  );
+  columnNums = willBe;
 };
 
 const init = function () {

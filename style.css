@@ -82,7 +82,7 @@ body {
 }
 
 .modal {
-  width: 50rem;
+  width: 55rem;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
