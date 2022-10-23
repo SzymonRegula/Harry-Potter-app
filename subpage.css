@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  color: #fff;
+  background-color: #212529;
+  line-height: 1;
+}
+
+.header {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.btn {
+  border: none;
+  padding: 1rem;
+  color: #fff;
+  background-color: #1864ab;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  font-size: 2rem;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #1971c2;
+  box-shadow: 0 0 0 0.1rem #1971c2;
+}
+
+.btn-link:link,
+.btn-link:visited {
+  text-decoration: none;
+}
+
+.cards-container {
+  width: fit-content;
+  justify-content: center;
+  margin: 0 auto 4rem auto;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card {
+  position: relative;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20rem;
+  background-color: #0a2844;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card-img {
+  height: 34rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 2rem 0rem;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.btn-remove {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.6rem;
+  background-color: #0a2844;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-remove:hover {
+  background-color: #c92a2a;
+  box-shadow: none;
+}
+
+.icon-remove {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+}
+
+.switch-disp {
+  line-height: 0;
+  padding: 0.5rem;
+}
+
+.icon-switch-disp {
+  height: 3rem;
+  width: 3rem;
+}
+
+@media (max-width: 78em) {
+  .card.columns-5 {
+    height: 30rem;
+    width: 15rem;
+  }
+
+  .card-info.columns-5 {
+    padding: 1.5rem 0rem;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 60em) {
+  .card.columns-5 {
+    height: 25rem;
+    width: 12rem;
+  }
+
+  .card-info.columns-5 {
+    padding: 1.2rem 0rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 51em) {
+  .card.columns-5 {
+    height: 18rem;
+    width: 8rem;
+  }
+
+  .card-info.columns-5 {
+    padding: 1rem 0rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .card.columns-3 {
+    height: 28rem;
+    width: 13rem;
+  }
+
+  .card-info.columns-3 {
+    padding: 1.5rem 0rem;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 41em) {
+  .cards-container {
+    gap: 1.5rem;
+  }
+}

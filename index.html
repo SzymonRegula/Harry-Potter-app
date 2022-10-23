@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script type="module" src="script.js"></script>
+
+    <title>Recruitment task</title>
+  </head>
+  <body>
+    <header class="header">
+      <button class="btn btn-all">All students</button>
+      <button class="btn btn-gryffindor">Gryffindor</button>
+      <button class="btn btn-slytherin">Slytherin</button>
+      <button class="btn btn-hufflepuff">Hufflepuff</button>
+      <button class="btn btn-ravenclaw">Ravenclaw</button>
+      <a class="btn btn-link" href="subpage.html">Favorites</a>
+    </header>
+
+    <table class="table hidden">
+      <thead class="t-head">
+        <tr>
+          <th class="sort sort-name">Name</th>
+          <th class="sort sort-date">Date of birth</th>
+          <th class="sort sort-house">House</th>
+          <th>Wizard</th>
+          <th>Ancestry</th>
+          <th>Is student / staff</th>
+        </tr>
+      </thead>
+      <tbody class="t-body"></tbody>
+    </table>
+
+    <div class="backdrop hidden"></div>
+    <div class="modal hidden">
+      <img class="modal-img" src="" alt="Harry Potter character" />
+      <div class="modal-info">
+        <div>
+          <span class="info">Name:</span>
+          <span class="modal-name"></span>
+        </div>
+        <div>
+          <span class="info">Date of birth:</span>
+          <span class="modal-date"></span>
+        </div>
+        <div>
+          <span class="info">House:</span>
+          <span class="modal-house"></span>
+        </div>
+        <div>
+          <span class="info">Wizard:</span>
+          <span class="modal-wizard"></span>
+        </div>
+        <div>
+          <span class="info">Ancestry:</span>
+          <span class="modal-ancestry"></span>
+        </div>
+        <div>
+          <span class="info">Is student/staff:</span>
+          <span class="modal-is-student"></span>
+        </div>
+      </div>
+      <button class="btn btn-favorites"></button>
+      <button class="btn btn-close">
+        <ion-icon class="icon-close" name="close-outline"></ion-icon>
+      </button>
+    </div>
+  </body>
+</html>
