@@ -1,2 +1,4 @@
 # recruitment-task
-https://task-szymonregula.netlify.app
+author: Szymon Reguła
+
+Site: https://task-szymonregula.netlify.app
