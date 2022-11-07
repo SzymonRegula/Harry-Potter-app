@@ -1,7 +1,8 @@
 # Harry Potter app
-
-site: https://task-szymonregula.netlify.app
 author: Szymon Reguła
+
+Site: https://task-szymonregula.netlify.app
+
 
 Application that communicates with HP-API!: https://hp-api.herokuapp.com/ and have the following functionalities:
 
