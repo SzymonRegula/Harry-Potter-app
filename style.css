@@ -85,8 +85,8 @@ body {
   width: 55rem;
   position: fixed;
   left: 50%;
-  transform: translateX(-50%);
-  top: 20vh;
+  top: 50vh;
+  transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: auto 1fr;
   color: #fff;
